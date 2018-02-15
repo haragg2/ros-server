@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 
-import sys
 import rospy
 from add_int_service.srv import *
-from std_msgs.msg import Int64
+from std_msgs.msg import Int32
 
-x=0
-y=1
+x,y=0,1
 def add_two_ints_client(x, y):
     rospy.wait_for_service('add_two_ints')
     try:
@@ -20,12 +18,12 @@ def add_two_ints_client(x, y):
 def call_service():
     global x,y
     rospy.init_node('call_service', anonymous=True)
-    pub = rospy.Publisher('chatter', Int64, queue_size=10)
-    rate = rospy.Rate(1) # 10hz
+    #pub = rospy.Publisher('chatter', Int32, queue_size=10)
+    rate = rospy.Rate(1) # 1hz
     while not rospy.is_shutdown():
         x,y= y, add_two_ints_client(x, y)
-        print y
-        pub.publish(y)
+        rospy.loginfo("sum returned : %s" % y)
+        #pub.publish(y)
         rate.sleep()
 
 if __name__ == "__main__":
