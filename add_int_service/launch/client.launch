@@ -1,0 +1,3 @@
+<launch>
+	<node name="call_service" pkg="add_int_service" type="add_int_client.py" output="screen"/>
+</launch>
