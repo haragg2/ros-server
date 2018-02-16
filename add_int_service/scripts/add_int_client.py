@@ -5,7 +5,7 @@ from add_int_service.srv import *
 
 def call_service():
     x = 0
-    rate = rospy.Rate(1) # 10hz
+    rate = rospy.Rate(1) # 1hz
     while not rospy.is_shutdown():
         x = add_two_ints(x, 1).sum
         rospy.loginfo("sum returned : %s" %x)
